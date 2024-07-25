@@ -4,9 +4,14 @@ module.exports = {
   content: ['./src/**/*.{html,js,jsx}'],
   theme: {
     fontFamily:{
-      'mplus-rounded': ['"M PLUS Rounded 1c"', 'sans-serif'],
+      'mplusRounded': ['"M PLUS Rounded 1c"', 'sans-serif'],
+      'MaplestoryOTFBold': ['MaplestoryOTFBold']
     },
-    extend: {},
+    extend: {
+      backgroundImage: {
+        stone: "url('img/stone.png')"
+      }
+    },
   },
   plugins: [],
 }
