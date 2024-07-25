@@ -2,8 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
+/* @font-face {
     font-family: "M PLUS Rounded 1c", sans-serif;
     font-weight: 400;
     font-style: normal;
+} */
+
+@font-face {
+    font-family: 'MaplestoryOTFBold';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@keyframes burn {
+    0% {
+        opacity: 1;
+        filter: brightness(100%) grayscale(0%);
+    }
+    50% {
+        opacity: 0.5;
+        filter: brightness(50%) grayscale(70%);
+    }
+    100% {
+        opacity: 0;
+        filter: brightness(0%) grayscale(100%) blur(5px);
+    }
+}
+
+.burning {
+    animation: burn 3s forwards;
+}
+
+:root {
+    --heig: calc(100% - 131px);
 }
