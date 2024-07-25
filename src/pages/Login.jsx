@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export default function Login() {
     const User = {
@@ -94,29 +95,18 @@ export default function Login() {
                         </div>
                         <div className='flex flex-row'>
                             <div className='text-[#7A90AE] mr-[20px]'>아이디 찾기</div>
-                            <div className='text-[#7A90AE]'>비밀번호 찾기</div>
+                            <NavLink to='/emailFind' className='text-[#7A90AE]'>비밀번호 찾기</NavLink>
                         </div>
                     </div>
 
-                    <button
-                        disabled={notAllow}
-                        onClick={confirmMessage}
-                        className="w-full rounded-full mb-4 p-3 h-12 text-sm text-black bg-[#C4D4E9] disabled:text-white font-bold "
-                    >로그인
-                    </button>
-                    
-                    <div className="text-center text-xs mb-4 text-[#7A90AE]">간편 로그인</div>
-                        <div className="flex justify-center gap-4">
-                            <button>
-                                <img src="./img/Google.png" alt="Google" className="w-10 h-10 bg-white rounded-full" />
-                            </button>
-                            <button>
-                                <img src="./img/Naver.png" alt="Naver"  className="w-10 h-10 bg-white rounded-full shadow"/>
-                            </button>
-                            <button>
-                                <img src="./img/Kakao.png" alt="Kakao"  className="w-10 h-10 bg-white rounded-full shadow" />
-                            </button>
-                        </div>
+                    <div className='mt-4'>
+                        <button
+                            disabled={notAllow}
+                            onClick={confirmMessage}
+                            className="w-full rounded-full mb-4 p-3 h-12 text-sm text-black bg-[#C4D4E9] disabled:text-white font-bold "
+                        >로그인
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

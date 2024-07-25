@@ -101,7 +101,7 @@ export default function Attendance() {
                                         showYearDropdown
                                         dropdownMode="select"
                                         className="text-center text-white bg-[#CAD6E2]"
-                                        dateFormat="yyyy/MM/dd"
+                                        dateFormat="yyyy . MM . dd"
                                         calendarClassName="calendar-custom"
                                     />
                                 </div>
