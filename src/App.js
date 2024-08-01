@@ -8,8 +8,12 @@ import Login from "./pages/Login";
 import Attendance from "./pages/Attendance";
 import Diary from "./pages/Diary";
 import Fire from "./pages/Fire";
-import EmailFind from "./pages/EmailFind";
+import IdEmail from "./pages/IdEmail";
+import IdFind from "./pages/IdFind"
+import PasswordEmail from "./pages/PasswordEmail";
 import PasswordFind from "./pages/PasswordFind";
+import Info from "./pages/Info";
+import Footer from "./components/Footer";
 
 
 export default function App() {
@@ -21,13 +25,17 @@ export default function App() {
           <Route path='/' element={<Home />} />
           <Route path='/homeLogin' element={<HomeLogin />} />
           <Route path='/signUp' element={<SignUp />} />
-          <Route path="/login" element={<Login />} />
+          <Route path='/login' element={<Login />} />
           <Route path='/attendance' element={<Attendance />} />
           <Route path='/diary' element={<Diary />} />
           <Route path='/fire' element={<Fire />} />
-          <Route path='/emailFind' element={<EmailFind />} />
+          <Route path='/idEmail' element={<IdEmail />} />
+          <Route path='/idFind' element={<IdFind />} />
+          <Route path='/passwordEmail' element={<PasswordEmail />} />
           <Route path='/passwordFind' element={<PasswordFind />} />
+          <Route path='/info' element={<Info />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </div>
   );

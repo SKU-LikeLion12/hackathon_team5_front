@@ -10,7 +10,7 @@ export default function Header() {
             <div className='flex justify-between border-b-[1px] border-b-[#548BD3]'>
                 <NavLink to='/' className='flex'>
                     <img src="img/logo.png" alt="logo" className=' flex w-[90px]' />
-                    <div className='flex items-center ml-5 text-4xl font-MaplestoryOTFBold'>Good or Bad</div>
+                    <div id='title' className='flex items-center ml-5 text-4xl'>Good or Bad</div>
                 </NavLink>
                 <div className='flex items-center justify-center'>
                     <NavLink to='/attendance' className={({ isActive }) => `flex-row ${isActive ? 'text-[#709EE1]' : 'text-black'}`}>

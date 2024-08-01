@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
-export default function EmailFind() {
+export default function PasswordEmail() {
     const [email, setEmail] = useState('');
     const [emailValid, setEmailValid] = useState(true);
 
