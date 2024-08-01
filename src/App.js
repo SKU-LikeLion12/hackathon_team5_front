@@ -1,26 +1,42 @@
-import Login from "./pages/Login";
-import Main from "./pages/Main";
-import Main2 from "./pages/Main2";
-import Attendance from "./pages/Attendance";
-import Email from "./pages/Email";
-import Password from "./pages/Password";
+import React from "react";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Header from "./components/Header";
+import Home from "./pages/Home";
+import HomeLogin from "./pages/HomeLogin";
+import SignUp from "./pages/SignUp";
+import Login from "./pages/Login";
+import Attendance from "./pages/Attendance";
+import Diary from "./pages/Diary";
+import Fire from "./pages/Fire";
+import IdEmail from "./pages/IdEmail";
+import IdFind from "./pages/IdFind"
+import PasswordEmail from "./pages/PasswordEmail";
+import PasswordFind from "./pages/PasswordFind";
+import Info from "./pages/Info";
+import Footer from "./components/Footer";
 
-function App() {
+
+export default function App() {
   return (
-    <div className="App">
+    <div className='bg-[#EEF1F6] min-h-screen'>
       <BrowserRouter>
+        <Header />
         <Routes>
-          <Route path="Login" element={<Login />} />
-          <Route path="Main" element={<Main />} />
-          <Route path="Main2" element={<Main2 />} />
-          <Route path="Attendance" element={<Attendance />} />
-          <Route path="Email" element={<Email />} />
-          <Route path="Password" element={<Password />} />
+          <Route path='/' element={<Home />} />
+          <Route path='/homeLogin' element={<HomeLogin />} />
+          <Route path='/signUp' element={<SignUp />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/attendance' element={<Attendance />} />
+          <Route path='/diary' element={<Diary />} />
+          <Route path='/fire' element={<Fire />} />
+          <Route path='/idEmail' element={<IdEmail />} />
+          <Route path='/idFind' element={<IdFind />} />
+          <Route path='/passwordEmail' element={<PasswordEmail />} />
+          <Route path='/passwordFind' element={<PasswordFind />} />
+          <Route path='/info' element={<Info />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </div>
   );
 }
-
-export default App;

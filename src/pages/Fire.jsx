@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-export default function Main2() {
+export default function Fire() {
   const contentRef = useRef();
   const [content, setContent] = useState('');
   const [burning, setBurning] = useState(false);
