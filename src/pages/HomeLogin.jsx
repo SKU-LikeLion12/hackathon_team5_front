@@ -11,16 +11,16 @@ export default function HomeLogin() {
                 className='flex w-[740px]'
                 />
             </div>
-            <div className='flex flex-column absolute justify-around rounded-2xl bottom-[10%] w-[30%] h-[fit]
+            <div className='flex flex-column absolute justify-around rounded-2xl bottom-[10%] h-[fit] px-[5%]
                         bg-white shadow-2xl'>
                 <div className='flex items-center m-1'>
                     <img 
-                    src="img/leaf.png" 
-                    alt="leaf" 
+                    src="img/apple.png" 
+                    alt="apple" 
                     className='flex w-5 m-4' 
                     />
-                    <div className='flex border-r-[3px] border-black h-4'></div>
-                    <div className='flex justify-center ml-3 font-semibold'>새로운 기억을 저장하려면 로그인을 해주세요 !</div>
+                    <div className='flex border-r-[3px] border-black h-4 mx-3'></div>
+                    <div className='flex justify-center ml-3 font-semibold'>새로운 기억을 저장하세요 !</div>
                 </div>
             </div>
             <NavLink to='/diary' className='fixed flex bottom-11 right-11'>

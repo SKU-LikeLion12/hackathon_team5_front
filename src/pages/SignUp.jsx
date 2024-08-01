@@ -2,6 +2,9 @@ import React, {useState, useEffect}from 'react'
 import { useNavigate } from 'react-router-dom';
 
 export default function SignUp() {
+
+    
+
     const [name, setName] = useState('');
     const [id, setId] = useState('');
     const [idValid, setIdValid] = useState(false);
@@ -83,6 +86,7 @@ export default function SignUp() {
 
                 <div className='text-xl font-bold color-[#262626] mt-1'>이름</div>
                 <input 
+                id='User_id'
                 type="text"
                 value={name}
                 placeholder='이름을 입력하세요.'

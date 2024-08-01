@@ -8,9 +8,6 @@ module.exports = {
       'MaplestoryOTFBold': ['MaplestoryOTFBold']
     },
     extend: {
-      backgroundImage: {
-        stone: "url('img/stone.png')"
-      }
     },
   },
   plugins: [],

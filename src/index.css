@@ -37,3 +37,7 @@
 :root {
     --heig: calc(100% - 131px);
 }
+
+#title {
+    font-family: 'MaplestoryOTFBold', sans-serif;
+}

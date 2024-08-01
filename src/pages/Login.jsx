@@ -69,7 +69,7 @@ export default function Login() {
                         className="w-full rounded-xl mb-4 p-3 border-[1px] border-[#e2e0e0] h-12 text-sm"
                     />
                     {!idValid && id.length > 0 && (
-                        <div className="mb-4 text-xs text-red-500">
+                        <div className="mㅌb-4 text-xs text-red-500">
                         영문, 숫자 포함 6자 이상 입력해주세요.
                         </div>
                     )}
@@ -94,8 +94,8 @@ export default function Login() {
                             <label htmlFor="remember" className='text-[#7A90AE]'>로그인 유지</label>
                         </div>
                         <div className='flex flex-row'>
-                            <div className='text-[#7A90AE] mr-[20px]'>아이디 찾기</div>
-                            <NavLink to='/emailFind' className='text-[#7A90AE]'>비밀번호 찾기</NavLink>
+                            <NavLink to='/idEmail' className='text-[#7A90AE] mr-[20px]'>아이디 찾기</NavLink>
+                            <NavLink to='/passwordEmail' className='text-[#7A90AE]'>비밀번호 찾기</NavLink>
                         </div>
                     </div>
 

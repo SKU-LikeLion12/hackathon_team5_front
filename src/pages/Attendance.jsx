@@ -87,13 +87,13 @@ export default function Attendance() {
 
     return (
         <div className="flex flex-col min-h-fit">
-            <div className="flex items-center justify-center my-5 text-3xl font-MaplestoryOTFBold">Attendance</div>
+            <div id="title" className="flex items-center justify-center my-5 text-3xl">Attendance</div>
             <div className="flex flex-row items-center justify-center">
                 <div id="calendar" className="w-[100%] mt-11">
                     <div className="flex items-center justify-center">
                         <div className="flex justify-center bg-[#CAD6E2] w-[50%] h-[90px] rounded-t-2xl">
                             <div id="topCal" className="flex items-center mb-4">
-                                <div className="text-2xl font-bold text-white mx-11">
+                                <div id="title" className="text-2xl font-bold text-white mx-11">
                                     <DatePicker
                                         selected={selectedDate}
                                         onChange={setSelectedDate}
