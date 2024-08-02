@@ -10,9 +10,7 @@ import Attendance from "./pages/Attendance";
 import Diary from "./pages/Diary";
 import Fire from "./pages/Fire";
 import IdEmail from "./pages/IdEmail";
-import IdFind from "./pages/IdFind"
 import PasswordEmail from "./pages/PasswordEmail";
-import PasswordFind from "./pages/PasswordFind";
 import Info from "./pages/Info";
 import Footer from "./components/Footer";
 import { AuthProvider } from './pages/AuthContext';
@@ -33,9 +31,7 @@ export default function App() {
             <Route path='/diary' element={<Diary />} />
             <Route path='/fire' element={<Fire />} />
             <Route path='/idEmail' element={<IdEmail />} />
-            <Route path='/idFind' element={<IdFind />} />
             <Route path='/passwordEmail' element={<PasswordEmail />} />
-            <Route path='/passwordFind' element={<PasswordFind />} />
             <Route path='/info' element={<Info />} />
           </Routes>
           <Footer />
