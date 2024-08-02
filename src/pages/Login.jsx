@@ -1,58 +1,75 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
+import { AuthContext } from './AuthContext';
 
 export default function Login() {
-    const User = {
-        id: 'cleame8922',
-        pw: 'chldbwjd02!',
-    };
-
     const [id, setId] = useState('');
     const [pw, setPw] = useState('');
     const [idValid, setIdValid] = useState(false);
     const [pwValid, setPwValid] = useState(false);
     const [notAllow, setNotAllow] = useState(true);
     const navigate = useNavigate();
-
+    const { setIsLoggedIn } = useContext(AuthContext);
 
     const handleId = (e) => {
         setId(e.target.value);
         const regex = /^(?=.*[A-Za-z])(?=.*?[0-9]).{6,}$/;
-
-        if (regex.test(e.target.value)) {
-        setIdValid(true);
-        } else {
-        setIdValid(false);
-        }
+        setIdValid(regex.test(e.target.value));
     };
 
     const handlePw = (e) => {
         setPw(e.target.value);
         const regex = /^(?=.*[A-Za-z])(?=.*?[0-9]).{6,}$/;
+        setPwValid(regex.test(e.target.value));
+    };
 
-        if (regex.test(e.target.value)) {
-        setPwValid(true);
-        } else {
-        setPwValid(false);
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            confirmMessage();
         }
     };
 
-    const confirmMessage = () => {
-        if (id === User.id && pw === User.pw) {
-        alert('로그인에 성공했습니다.');
-        navigate('/');
+
+    const confirmMessage = async () => {
+        if (idValid && pwValid) {
+            const payload = {
+                userId: id,
+                password: pw
+            };
+
+            try {
+                const response = await axios.post('https://team5back.sku-sku.com/session-login', payload, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+
+                if (response.status === 200) {
+                    const token = response.data; 
+                    localStorage.setItem('token', token); 
+                    alert(`${id}님 로그인에 성공했습니다!`);
+                    setIsLoggedIn(true); // 로그인 상태를 true로 설정
+                    navigate('/');
+                } else {
+                    alert('로그인 중 오류가 발생했습니다.');
+                }
+            } catch (error) {
+                if (error.response && error.response.status === 401) {
+                    alert('아이디, 비밀번호가 일치하지 않습니다.');
+                } else {
+                    console.error('로그인 중 오류가 발생했습니다.', error);
+                    alert('로그인 중 오류가 발생했습니다.');
+                }
+            }
         } else {
-        alert('등록되지 않은 회원입니다.');
+            alert('아이디와 비밀번호를 올바르게 입력해주세요.');
         }
     };
 
     useEffect(() => {
-        if (idValid && pwValid) {
-        setNotAllow(false);
-        } else {
-        setNotAllow(true);
-        }
+        setNotAllow(!(idValid && pwValid));
     }, [idValid, pwValid]);
 
     return (
@@ -65,12 +82,13 @@ export default function Login() {
                         type="text"
                         value={id}
                         onChange={handleId}
+                        onKeyDown={handleKeyPress}
                         placeholder="아이디를 입력하세요."
                         className="w-full rounded-xl mb-4 p-3 border-[1px] border-[#e2e0e0] h-12 text-sm"
                     />
                     {!idValid && id.length > 0 && (
-                        <div className="mㅌb-4 text-xs text-red-500">
-                        영문, 숫자 포함 6자 이상 입력해주세요.
+                        <div className="mb-4 text-xs text-red-500">
+                            영문, 숫자 포함 6자 이상 입력해주세요.
                         </div>
                     )}
 
@@ -79,12 +97,13 @@ export default function Login() {
                         type="password"
                         value={pw}
                         onChange={handlePw}
+                        onKeyDown={handleKeyPress}
                         placeholder="비밀번호를 입력하세요."
                         className="w-full rounded-xl mb-4 p-3 border-[1px] border-[#e2e0e0] h-12 text-sm"
                     />
                     {!pwValid && pw.length > 0 && (
                         <div className="mb-4 text-xs text-red-500">
-                        영문, 숫자 포함 6자 이상 입력해주세요.
+                            영문, 숫자 포함 6자 이상 입력해주세요.
                         </div>
                     )}
 
@@ -110,5 +129,5 @@ export default function Login() {
                 </div>
             </div>
         </div>
-);
+    );
 }
