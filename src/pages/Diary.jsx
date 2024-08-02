@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 import { GrFormPrevious } from "react-icons/gr";
 import { IoIosSave } from "react-icons/io";
@@ -10,27 +11,27 @@ export default function Main() {
 
     const [content1, setContent1] = useState('');
     const [content2, setContent2] = useState('');
-    const [currentView, setCurrentView] = useState('mood'); // State to track the current view
-    const [selectedDate, setSelectedDate] = useState(''); // State to track the selected date
+    const [currentView, setCurrentView] = useState('mood');
+    const [selectedDate, setSelectedDate] = useState('');
 
     useEffect(() => {
         if (contentRef1.current) {
-            contentRef1.current.innerText = content1;
+            contentRef1.current.value = content1; // Set value for textarea
         }
     }, [content1]);
 
     useEffect(() => {
         if (contentRef2.current) {
-            contentRef2.current.innerText = content2;
+            contentRef2.current.value = content2; // Set value for textarea
         }
     }, [content2]);
 
     const handleInput1 = (e) => {
-        setContent1(e.target.innerText);
+        setContent1(e.target.value); // Update state with textarea value
     };
 
     const handleInput2 = (e) => {
-        setContent2(e.target.innerText);
+        setContent2(e.target.value); // Update state with textarea value
     };
 
     const handleDateChange = (e) => {
@@ -41,11 +42,48 @@ export default function Main() {
         setCurrentView((prevView) => (prevView === 'mood' ? 'diary' : 'mood'));
     };
 
-    const saveDiary = () => {
-        // Add saving functionality here
-        console.log("Diary saved:", content2);
-        alert("일기가 저장되었습니다.");
+    const saveDiary = async () => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            alert("로그인이 필요합니다.");
+            return;
+        }
+    
+        const payload = {
+            date: selectedDate,
+            content: content2,
+            goodMemory: content1 === 'Good'
+        };
+    
+        try {
+            const response = await axios.post('https://team5back.sku-sku.com/api/diaries', payload, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}` // 토큰을 Authorization 헤더에 추가
+                }
+            });
+    
+            if (response.status === 200) {
+                alert("일기가 저장되었습니다.");
+            } else {
+                alert('일기 저장 중 오류가 발생했습니다.');
+            }
+        } catch (error) {
+            if (error.response) {
+                console.error('에러 응답:', error.response);
+                if (error.response.status === 404) {
+                    alert('API 엔드포인트를 찾을 수 없습니다. URL을 확인해 주세요.');
+                } else if (error.response.status === 401) {
+                    alert('토큰이 만료되었거나 서명 검증에 실패했습니다. 로그인 상태를 확인해 주세요.');
+                } else {
+                    alert('일기 저장 중 오류가 발생했습니다.');
+                }
+            } else {
+                alert('일기 저장 중 알 수 없는 오류가 발생했습니다.');
+            }
+        }
     };
+    
 
     return (
         <div className='flex flex-row justify-center w-[100%] mt-10'>
@@ -91,9 +129,7 @@ export default function Main() {
                                     <textarea
                                         className="w-full rounded-lg bg-[#eef1f6]"
                                         ref={contentRef1}
-                                        onChange={(e) => setContent1(e.target.value)}
-                                        contentEditable
-                                        onInput={handleInput1}
+                                        onChange={handleInput1}
                                         style={{
                                             whiteSpace: 'pre-wrap',
                                             lineHeight: '1.9',
@@ -108,12 +144,6 @@ export default function Main() {
                                     />
                                 </div>
                             </div>
-
-                            {/* <div className='flex justify-center w-[100%] h-fit mt-[5%]'>
-                                <button className="bg-[#CAD6E2] w-[40%] rounded-2xl shadow-md font-bold p-3" onClick={toggleView}>
-                                    다음
-                                </button>
-                            </div> */}
                         </div>
                     </div>
                 )}
@@ -133,8 +163,7 @@ export default function Main() {
                                 <textarea
                                     className="flex justify-center w-[60%] rounded-lg bg-opacity-25"
                                     ref={contentRef2}
-                                    onChange={(e) => setContent2(e.target.value)}
-                                    onInput={handleInput2}
+                                    onChange={handleInput2}
                                     style={{
                                         whiteSpace: 'pre-wrap',
                                         lineHeight: '1.9',
