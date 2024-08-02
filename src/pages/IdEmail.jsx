@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 export default function IdEmail() {
@@ -6,15 +6,6 @@ export default function IdEmail() {
     const [name, setName] = useState('');
     const [emailValid, setEmailValid] = useState(true);
     const [responseMessage, setResponseMessage] = useState('');
-    const [token, setToken] = useState('');
-
-    // Retrieve the token from localStorage when the component mounts
-    useEffect(() => {
-        const storedToken = localStorage.getItem('token');
-        if (storedToken) {
-            setToken(storedToken);
-        }
-    }, []);
 
     const handleEmail = (e) => {
         setEmail(e.target.value);
@@ -32,7 +23,6 @@ export default function IdEmail() {
     };
 
     const handleSubmit = async () => {
-        // Check if email and name are valid
         if (!emailValid || !name) {
             setResponseMessage('이메일과 이름을 올바르게 입력해 주세요.');
             return;
@@ -45,7 +35,6 @@ export default function IdEmail() {
                     email: email
                 },
                 headers: {
-                    'Authorization': `Bearer ${token}`, // Add the token to the request headers
                     'Content-Type': 'application/json'
                 }
             });
