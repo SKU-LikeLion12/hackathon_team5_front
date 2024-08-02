@@ -61,7 +61,7 @@ export default function Diary() {
             const response = await axios.post('https://team5back.sku-sku.com/api/diaries', payload, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
+                    'Authorization': `${token}`
                 }
             });
     
@@ -74,9 +74,6 @@ export default function Diary() {
         } catch (error) {
             if (error.response) {
                 // 서버가 상태 코드를 반환했을 경우
-    console.error('Error Response Data:', error.response.data);
-    console.error('Error Response Status:', error.response.status);
-    console.error('Error Response Headers:', error.response.headers);
                 console.error('에러 응답:', error.response);
                 if (error.response.status === 404) {
                     alert('API 엔드포인트를 찾을 수 없습니다. URL을 확인해 주세요.');

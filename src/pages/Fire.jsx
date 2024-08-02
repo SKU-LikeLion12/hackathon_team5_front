@@ -32,10 +32,10 @@ export default function Fire() {
           <div className="absolute top-[15%] left-[50%] transform -translate-x-1/2 text-center font-bold text-[18px] ">
           Today's diary
           </div>
-          <img src="../img/zz.png" alt="일기" className="w-full mt-8 cursor-pointer" onClick={startBurning} />
+          <img src="../img/letter.png" alt="일기" className="w-full mt-8 cursor-pointer" onClick={startBurning} />
           <div className="absolute top-[20%] left-[50%] transform -translate-x-1/2 w-[70%] p-4">
             <textarea
-              className="w-full h-full rounded-lg bg-opacity-25"
+              className="w-full h-full bg-opacity-25 rounded-lg"
               ref={contentRef}
               onChange={(e) => setContent(e.target.value)}
               onInput={handleInput}
