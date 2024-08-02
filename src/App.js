@@ -17,6 +17,9 @@ import { AuthProvider } from './pages/AuthContext';
 
 
 export default function App() {
+  console.log('Window Inner Width:', window.innerWidth);
+  console.log('Device Pixel Ratio:', window.devicePixelRatio);
+  console.log('Actual Screen Width:', window.innerWidth * window.devicePixelRatio);
 
   return (
     <div className='bg-[#EEF1F6] min-h-screen'>
