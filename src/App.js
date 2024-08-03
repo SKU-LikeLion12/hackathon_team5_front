@@ -8,16 +8,13 @@ import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Attendance from "./pages/Attendance";
 import Diary from "./pages/Diary";
-import Fire from "./pages/Fire";
-import IdEmail from "./pages/IdEmail";
-import IdFind from "./pages/IdFind"
-import PasswordEmail from "./pages/PasswordEmail";
+import IdFind from "./pages/IdFind";
 import PasswordFind from "./pages/PasswordFind";
 import Info from "./pages/Info";
 import Footer from "./components/Footer";
 import { AuthProvider } from './pages/AuthContext';
-
-
+import PasswordEmail from "./pages/PasswordEmail";
+import GoodMemory from "./pages/GoodMemory";
 
 export default function App() {
   return (
@@ -31,11 +28,11 @@ export default function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/attendance' element={<Attendance />} />
             <Route path='/diary' element={<Diary />} />
-            <Route path='/fire' element={<Fire />} />
-            <Route path='/idEmail' element={<IdEmail />} />
+            <Route path="/diary/:date" element={<Diary />} />
+            <Route path="/good-memory/:date" element={<GoodMemory />} />
             <Route path='/idFind' element={<IdFind />} />
-            <Route path='/passwordEmail' element={<PasswordEmail />} />
             <Route path='/passwordFind' element={<PasswordFind />} />
+            <Route path='/passwordEmail' element={<PasswordEmail />} />
             <Route path='/info' element={<Info />} />
           </Routes>
           <Footer />

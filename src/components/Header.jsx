@@ -4,6 +4,7 @@ import { TbLogin2, TbLogout2 } from "react-icons/tb";
 import { MdRememberMe } from "react-icons/md";
 import { FaRegCalendarCheck } from "react-icons/fa6";
 import { AuthContext } from '../pages/AuthContext';
+import { images } from '../images';
 
 export default function Header() {
     const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
@@ -18,7 +19,7 @@ export default function Header() {
         <div className='px-12 py-4'>
             <div className='flex justify-between border-b-[1px] border-b-[#548BD3]'>
                 <NavLink to='/' className='flex'>
-                    <img src="img/logo.png" alt="logo" className=' flex w-[90px]' />
+                    <img src={images.logo} alt="logo" className=' flex w-[90px]' />
                     <div id='title' className='flex items-center ml-5 text-4xl'>Good or Bad</div>
                 </NavLink>
                 <div className='flex items-center justify-center'>
