@@ -113,7 +113,7 @@ export default function Login() {
                             <label htmlFor="remember" className='text-[#7A90AE]'>로그인 유지</label>
                         </div>
                         <div className='flex flex-row'>
-                            <NavLink to='/idEmail' className='text-[#7A90AE] mr-[20px]'>아이디 찾기</NavLink>
+                            <NavLink to='/idFind' className='text-[#7A90AE] mr-[20px]'>아이디 찾기</NavLink>
                             <NavLink to='/passwordEmail' className='text-[#7A90AE]'>비밀번호 찾기</NavLink>
                         </div>
                     </div>

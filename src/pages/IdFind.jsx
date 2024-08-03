@@ -22,6 +22,12 @@ export default function IdFind() {
         setName(e.target.value);
     };
 
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            handleSubmit();
+        }
+    };
+
     const handleSubmit = async () => {
         if (!emailValid) return;
 
@@ -64,6 +70,7 @@ export default function IdFind() {
                             placeholder="가입한 이름을 입력해주세요."
                             value={name}
                             onChange={handleName}
+                            onKeyDown={handleKeyPress}
                             className="w-[80%] mx-[10%] rounded-xl mb-4 p-3 border-[1px] border-[#e2e0e0] h-12 text-sm" />
                     </div>
 
@@ -74,6 +81,7 @@ export default function IdFind() {
                             placeholder="가입한 이메일을 입력해주세요."
                             value={email}
                             onChange={handleEmail}
+                            onKeyDown={handleKeyPress}
                             className="w-[80%] mx-[10%] rounded-xl mb-3 p-3 border-[1px] border-[#e2e0e0] h-12 text-sm" />
                         {!emailValid && (
                             <div className="text-red-500 text-xs mb-4 w-[80%] mx-[10%]">
@@ -86,7 +94,7 @@ export default function IdFind() {
                         disabled={!emailValid} 
                         onClick={handleSubmit}> 확인</button>
                     {message && (
-                        <div className="text-center text-red-500 text-sm mt-4">
+                        <div className="mt-4 text-sm text-center text-red-500">
                             {message}
                         </div>
                     )}

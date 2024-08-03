@@ -32,7 +32,7 @@ export default function PasswordFind() {
                 email,
             }, {
                 headers: {
-                    'Authorization': `Bearer ${token}` // 토큰을 헤더에 포함
+                    'Authorization': `${token}` // 토큰을 헤더에 포함
                 }
             });
 
