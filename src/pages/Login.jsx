@@ -40,7 +40,7 @@ export default function Login() {
             };
 
             try {
-                const response = await axios.post('https://team5back.sku-sku.com/session-login', payload, {
+                const response = await axios.post('https://team5back.sku-sku.com/api/session-login', payload, {
                     headers: {
                         'Content-Type': 'application/json',
                     },
