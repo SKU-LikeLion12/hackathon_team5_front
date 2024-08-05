@@ -1,13 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../index.css'; // CSS 애니메이션 파일 임포트
 import { images } from '../images';
 
-
 export default function Diary() {
-    const contentRef1 = useRef();
-    const contentRef2 = useRef();
     const navigate = useNavigate();
 
     const [content1, setContent1] = useState('');
@@ -17,32 +14,27 @@ export default function Diary() {
     const [clickedButton, setClickedButton] = useState('');
     const [isDeleting, setIsDeleting] = useState(false);
 
-    // 날짜를 당일로 고정
+    // 현재 날짜를 설정하고 자정에 날짜가 바뀌도록 타이머 설정
     useEffect(() => {
-        const today = new Date().toISOString().split('T')[0];
-        setSelectedDate(today);
+        const updateDate = () => {
+            const now = new Date();
+            const koreaTime = new Date(now.setHours(now.getHours() + 9));
+            const today = koreaTime.toISOString().split('T')[0];
+            setSelectedDate(today);
+        };
+
+        updateDate(); // 컴포넌트가 마운트될 때 날짜 설정
+
+        const now = new Date();
+        const millisTillMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0, 0) - now;
+
+        const timer = setTimeout(() => {
+            updateDate();
+            setInterval(updateDate, 24 * 60 * 60 * 1000); // 매일 자정마다 날짜 업데이트
+        }, millisTillMidnight);
+
+        return () => clearTimeout(timer); // 컴포넌트가 언마운트될 때 타이머 정리
     }, []);
-
-    useEffect(() => {
-        if (contentRef1.current) {
-            contentRef1.current.innerText = content1;
-        }
-    }, [content1]);
-
-    useEffect(() => {
-        if (contentRef2.current) {
-            contentRef2.current.innerText = content2;
-        }
-    }, [content2]);
-
-    const inputHandlers = {
-        handleInput1: (e) => {
-            setContent1(e.target.innerText);
-        },
-        handleInput2: (e) => {
-            setContent2(e.target.innerText);
-        }
-    };
 
     const handleMemoryChange = (e) => {
         if (e.target.alt === 'good') {
@@ -190,9 +182,7 @@ export default function Diary() {
                                 <textarea
                                     className="w-full rounded-lg bg-[#eef1f6]"
                                     value={content1}
-                                    ref={contentRef1}
                                     onChange={(e) => setContent1(e.target.value)}
-                                    onInput={inputHandlers.handleInput1}
                                     placeholder="오늘 하루 느꼈던 감정을 세세하게 적어주세요."
                                     style={{
                                         whiteSpace: 'pre-wrap',
@@ -222,14 +212,12 @@ export default function Diary() {
                         <div className="absolute top-[15%] left-[37%] text-center font-bold text-[18px]">
                             오늘의 일기
                         </div>
-                        <img src={images.letter} alt='일기' className="w-[90%] mt-[10%] mr-[60px]" />
+                        <img src={images.diary} alt='diary' className="w-[90%] mt-[10%] mr-[60px]" />
                         <div className="absolute top-[20%] left-[20%] right-[5%] p-4">
                             <textarea
                                 className="w-[60%] rounded-lg bg-opacity-25"
                                 value={content2}
-                                ref={contentRef2}
                                 onChange={(e) => setContent2(e.target.value)}
-                                onInput={inputHandlers.handleInput2}
                                 placeholder="오늘은 어떤 일이 있으셨나요?"
                                 style={{
                                     whiteSpace: 'pre-wrap',

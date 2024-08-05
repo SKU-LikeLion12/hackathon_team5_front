@@ -36,10 +36,10 @@ export default function Header() {
                         </>
                     ) : (
                         <div className='flex flex-row text-black cursor-pointer'>
-                            <div onClick={handleLogout} className='flex flex-col'>
+                            <NavLink to='/' onClick={handleLogout} className='flex flex-col'>
                                 <TbLogout2 size={21} className='flex mx-auto' />
                                 <div>로그아웃</div>
-                            </div>
+                            </NavLink>
                             <NavLink to='/attendance' className={({ isActive }) => `flex flex-col ml-7 ${isActive ? 'text-[#709EE1]' : 'text-black'}`}>
                                 <FaRegCalendarCheck size={18} className='mx-auto' />
                                 <div>출석체크</div>
