@@ -104,7 +104,7 @@ export default function Diary() {
                 } else if (error.response.status === 401) {
                     alert('토큰이 만료되었거나 서명 검증에 실패했습니다. 로그인 상태를 확인해 주세요.');
                 } else {
-                    alert('일기 저장 중 오류가 발생했습니다.');
+                    alert('이미 저장된 일기가 존재합니다.');
                 }
             } else if (error.request) {
                 console.error('No response received:', error.request);
