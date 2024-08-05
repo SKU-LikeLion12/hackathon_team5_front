@@ -14,6 +14,8 @@ export const images = {
     bad: PATH + '/img/bad.png',
     good: PATH + '/img/good.png',
     letter: PATH + '/img/letter.png',
+    postA : PATH + 'img/postA.png',
+    postB : PATH + 'img/postB.png',
 
     //info
     jm: PATH + '/img/jm.png',
