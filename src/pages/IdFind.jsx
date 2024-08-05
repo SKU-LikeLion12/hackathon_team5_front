@@ -32,7 +32,7 @@ export default function IdFind() {
         if (!emailValid) return;
 
         try {
-            const response = await axios.post('https://team5back.sku-sku.com/find/userId', {
+            const response = await axios.post('https://team5back.sku-sku.com/api/find/userId', {
                 email,
                 name,
             }, {

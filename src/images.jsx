@@ -7,8 +7,11 @@ export const images = {
     //home
     apple: PATH + '/img/apple.png',
     leaf: PATH + '/img/leaf.png',
-    tree1: PATH + '/img/tree1.png',
     pen: PATH + '/img/pen.png',
+    letter: PATH + '/img/letter.png',
+    postB: PATH + '/img/postB.png',
+    postA: PATH + '/img/postA.png',
+
 
     //diary
     bad: PATH + '/img/bad.png',
@@ -16,6 +19,7 @@ export const images = {
     letter: PATH + '/img/letter.png',
     postA : PATH + 'img/postA.png',
     postB : PATH + 'img/postB.png',
+    diary: PATH + '/img/diary.png',
 
     //info
     jm: PATH + '/img/jm.png',
