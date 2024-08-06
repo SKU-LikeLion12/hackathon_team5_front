@@ -1,19 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 export default function PasswordFind() {
-    // const [id, setId] = useState('');
-    // const [email, setEmail] = useState('');
-    const [emailValid, setEmailValid] = useState(true);
     const [message, setMessage] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [pwValid, setPwValid] = useState(false);
     const [pwConfirm, setPwConfirm] = useState('');
     const [pwMatch, setPwMatch] = useState(true);
-
     const navigate = useNavigate();
+    const location = useLocation();
+    const [token, setToken] = useState('');
 
+    useEffect(() => {
+        const queryParams = new URLSearchParams(location.search);
+        const tokenFromUrl = queryParams.get('token');
+        if (tokenFromUrl) {
+            setToken(tokenFromUrl);
+            localStorage.setItem('token', tokenFromUrl); // 토큰을 로컬 저장소에 저장
+        }
+    }, [location]);
 
     const handlePw = (e) => {
         setNewPassword(e.target.value);
@@ -28,12 +35,13 @@ export default function PasswordFind() {
 
     const handleKeyPress = (e) => {
         if (e.key === 'Enter') {
+            handleSubmit();
         }
     };
-    
+
     const handleSubmit = async () => {
-        if (!emailValid) {
-            setMessage('유효한 이메일 주소를 입력해주세요.');
+        if (!pwValid || !pwMatch) {
+            setMessage('유효한 비밀번호를 입력하고 확인해 주세요.');
             return;
         }
 
@@ -72,7 +80,6 @@ export default function PasswordFind() {
                     <div className="mb-6 text-lg font-bold text-center">
                         비밀번호 재설정
                     </div>
-
                     <div className='text-xl font-bold color-[#262626] mt-10'>비밀번호</div>
                 <input
                     value={newPassword}
@@ -105,6 +112,45 @@ export default function PasswordFind() {
                         className="w-[50%] mx-[25%] rounded-3xl mb-4 p-3 h-12 text-sm bg-[#C4D4E9] font-bold"
                         // disabled={!emailValid || !userId}
                         onClick={handleSubmit}>확인</button> 
+                    <div className='text-xl font-bold text-[#262626] mt-10'>비밀번호</div>
+                    <input
+                        value={newPassword}
+                        onChange={handlePw}
+                        onKeyDown={handleKeyPress}
+                        type='password'
+                        placeholder='영문, 숫자, 특수문자 포함 7자 이상 입력하세요.'
+                        className='w-full mt-4 rounded-2xl p-4 border-[1px] border-[#e2e0e0] h-12 text-sm'
+                    />
+                    {!pwValid && newPassword.length > 0 && (
+                        <div className='mt-2 text-xs text-red-500'>
+                            영문, 숫자, 특수문자 포함 7자 이상 입력해주세요.
+                        </div>
+                    )}
+                    <div className='text-xl font-bold text-[#262626] mt-10'>비밀번호 확인</div>
+                    <input
+                        value={pwConfirm}
+                        onChange={handlePwConfirm}
+                        onKeyDown={handleKeyPress}
+                        type='password'
+                        placeholder='비밀번호를 입력하세요.'
+                        className='w-full mt-4 rounded-2xl p-4 border-[1px] border-[#e2e0e0] h-12 text-sm'
+                    />
+                    {!pwMatch && pwConfirm.length > 0 && (
+                        <div className='mt-2 text-xs text-red-500'>
+                            비밀번호가 일치하지 않습니다.
+                        </div>
+                    )}
+
+                    <button
+                        className="w-[50%] mx-[25%] rounded-3xl m-4 p-3 h-12 text-sm bg-[#C4D4E9] font-bold"
+                        onClick={handleSubmit}
+                        disabled={!pwValid || !pwMatch}
+                    >확인</button>
+                    {message && (
+                        <div className="mt-4 text-center text-red-500">
+                            {message}
+                        </div>
+                    )}
                 </div>
             </div>
         </>
