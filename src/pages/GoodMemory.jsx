@@ -182,7 +182,7 @@ export default function GoodMemory() {
                         <div className="absolute top-[15%] left-[37%] text-center font-bold text-[18px]">
                             오늘의 일기
                         </div>
-                        <img src={images.letter} alt='일기' className="w-[90%] mt-[10%] mr-[60px]" />
+                        <img src={images.diary} alt='diary' className="w-[90%] mt-[10%] mr-[60px]" />
                         <div className="absolute top-[20%] left-[20%] right-[5%] p-4">
                             <textarea
                                 className="w-[60%] rounded-lg bg-opacity-25"
