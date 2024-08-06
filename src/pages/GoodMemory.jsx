@@ -201,12 +201,6 @@ export default function GoodMemory() {
                                 }}
                             />
                         </div>
-                        <button 
-                            onClick={handleUpdate} 
-                            className="absolute bottom-[10%] left-[30%] bg-[#CAD6E2] w-[40%] rounded-2xl shadow-md font-bold p-3"
-                        >
-                            수정하기
-                        </button>
                     </div>
                 </div>
             </div>
