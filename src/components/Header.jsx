@@ -41,7 +41,7 @@ export default function Header() {
                                 <div>로그아웃</div>
                             </NavLink>
                             <NavLink to='/attendance' className={({ isActive }) => `flex flex-col ml-7 ${isActive ? 'text-[#709EE1]' : 'text-black'}`}>
-                                <FaRegCalendarCheck size={18} className='mx-auto' />
+                                <FaRegCalendarCheck size={18} className='mx-auto mt-[3%]' />
                                 <div>출석체크</div>
                             </NavLink>
                         </div>
