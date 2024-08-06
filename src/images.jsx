@@ -16,6 +16,9 @@ export const images = {
     //diary
     bad: PATH + '/img/bad.png',
     good: PATH + '/img/good.png',
+    letter: PATH + '/img/letter.png',
+    postA : PATH + 'img/postA.png',
+    postB : PATH + 'img/postB.png',
     diary: PATH + '/img/diary.png',
 
     //info

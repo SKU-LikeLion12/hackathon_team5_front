@@ -137,6 +137,7 @@ export default function GoodMemory() {
                         <div className="flex text-center font-bold text-[18px] mt-[10%]">
                             오늘의 기분은 ?
                         </div>
+                        <img src={images.good} alt="good" className="w-[100px] h-[100px]" />
 
                         <div id='day' className="flex justify-center">
                             <input 
@@ -147,7 +148,7 @@ export default function GoodMemory() {
                             />
                         </div>
 
-                        <div className="flex flex-col mx-[10%] w-[80%] bg-[#eef1f6] max-h-fit rounded-lg p-3">
+                        <div className="mx-[10%] w-[80%] bg-[#eef1f6] max-h-fit rounded-lg p-3">
                             <div className="py-5 text-lg font-bold text-center px-9">
                                 오늘의 감정
                             </div>
@@ -171,6 +172,9 @@ export default function GoodMemory() {
                             </div>
                         </div>
                     </div>
+                    <button onClick={handleUpdate} className="absolute bottom-[-25px] bg-[#CAD6E2] w-[40%] rounded-2xl shadow-md font-bold p-3">
+                        수정하기
+                    </button>
                 </div>
 
                 <div className="w-[46%] h-fit flex justify-center items-center relative">
