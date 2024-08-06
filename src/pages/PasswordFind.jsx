@@ -80,7 +80,38 @@ export default function PasswordFind() {
                     <div className="mb-6 text-lg font-bold text-center">
                         비밀번호 재설정
                     </div>
-
+                    <div className='text-xl font-bold color-[#262626] mt-10'>비밀번호</div>
+                <input
+                    value={newPassword}
+                    onChange={handlePw}
+                    onKeyDown={handleKeyPress}
+                    type='password'
+                    placeholder='영문, 숫자, 특수문자 포함 7자 이상 입력하세요.'
+                    className='w-full mt-4 rounded-2xl p-4 border-[1px] border-[#e2e0e0] h-12 text-sm'
+                />
+                {!pwValid && newPassword.length > 0 && (
+                    <div className='mt-2 text-xs text-red-500'>
+                        영문, 숫자, 특수문자 포함 7자 이상 입력해주세요.
+                    </div>
+                )}
+                <div className='text-xl font-bold color-[#262626] mt-10'>비밀번호 확인</div>
+                <input
+                    value={pwConfirm}
+                    onChange={handlePwConfirm}
+                    onKeyDown={handleKeyPress}
+                    type='password'
+                    placeholder='비밀번호를 입력하세요.'
+                    className='w-full mt-4 rounded-2xl p-4 border-[1px] border-[#e2e0e0] h-12 text-sm'
+                />
+                {!pwMatch && pwConfirm.length > 0 && (
+                    <div className='mt-2 text-xs text-red-500'>
+                        비밀번호가 일치하지 않습니다.
+                    </div>
+                )}
+                    <button
+                        className="w-[50%] mx-[25%] rounded-3xl mb-4 p-3 h-12 text-sm bg-[#C4D4E9] font-bold"
+                        // disabled={!emailValid || !userId}
+                        onClick={handleSubmit}>확인</button> 
                     <div className='text-xl font-bold text-[#262626] mt-10'>비밀번호</div>
                     <input
                         value={newPassword}

@@ -70,8 +70,9 @@ export default function GoodMemory() {
     useEffect(() => {
         if (error) {
             alert(error);
+            navigate('/'); // 에러가 있을 때 홈 페이지로 리디렉션
         }
-    }, [error]);
+    }, [error, navigate]);
 
     const handleUpdate = async () => {
         const token = localStorage.getItem('token');
