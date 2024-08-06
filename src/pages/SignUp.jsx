@@ -59,7 +59,7 @@ export default function SignUp() {
             };
 
             try {
-                const response = await axios.post('https://team5back.sku-sku.com/add', payload, {
+                const response = await axios.post('https://team5back.sku-sku.com/api/add', payload, {
                     headers: {
                         'Content-Type': 'application/json',
                     },
