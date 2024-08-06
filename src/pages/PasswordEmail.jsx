@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 
 export default function PasswordEmail() {
     const [email, setEmail] = useState('');
     const [emailValid, setEmailValid] = useState(true);
     const [userId, setUserId] = useState('');
     const [message, setMessage] = useState('');
-    const navigate = useNavigate();
 
     const handleUserId = (e) => {
         setUserId(e.target.value);
@@ -32,12 +30,7 @@ export default function PasswordEmail() {
             });
 
             if (response.status === 200) {
-                const token = response.data; 
-                localStorage.setItem('token', token); 
-                setMessage('비밀번호 재설정 링크가 이메일로 전송되었습니다.');
-                setTimeout(() => {
-                    navigate(`/passwordFind?token=${token}`);
-                }, 2000); // 2초 후에 이동
+                setMessage(`비밀번호 재설정 이메일이 전송되었습니다.`);
             } else {
                 setMessage('알 수 없는 오류가 발생했습니다. 다시 시도해 주세요.');
             }
