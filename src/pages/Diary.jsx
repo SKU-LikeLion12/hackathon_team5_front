@@ -46,32 +46,12 @@ export default function Diary() {
         }
     };
 
-    const checkExistingGoodMemory = async () => {
-        const token = localStorage.getItem('token');
-        if (!token) {
-            alert("로그인이 필요합니다.");
-            return false;
-        }
-
-        try {
-            const response = await axios.get(`https://team5back.sku-sku.com/api/diaries?date=${selectedDate}`, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `${token}`
-                }
-            });
-
-            return response.data.length > 0;
-        } catch (error) {
-            console.error('Error checking existing good memory:', error);
-            return false;
-        }
-    };
-
     const saveDiary = async () => {
         const token = localStorage.getItem('token');
         if (!token) {
-            alert("로그인이 필요합니다.");
+            if (window.confirm("로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?")) {
+                navigate('/login');
+            }
             return;
         }
 
@@ -92,6 +72,7 @@ export default function Diary() {
 
             if (response.status === 200) {
                 alert("일기가 저장되었습니다.");
+                alert("작성한 일기는 출석체크의 오늘 날짜를 눌러서 확인할 수 있어요!");
             } else {
                 console.error('Unexpected response status:', response.status);
                 alert('일기 저장 중 오류가 발생했습니다.');
@@ -117,12 +98,12 @@ export default function Diary() {
     };
 
     const handleSaveClick = async () => {
+        if (!clickedButton) {
+            alert("기분을 선택해주세요.");
+            return;
+        }
+
         if (clickedButton === 'good') {
-            const hasExistingGoodMemory = await checkExistingGoodMemory();
-            if (hasExistingGoodMemory) {
-                alert("이미 오늘의 좋은 기억이 저장되었습니다.");
-                return;
-            }
             saveDiary();
         } else {
             setIsDeleting(true); // 애니메이션 시작
@@ -148,7 +129,7 @@ export default function Diary() {
                             <div className={`flex flex-col text-center ${clickedButton === 'good' ? 'ring-4 ring-inset ring-transparent rounded-full shadow-md p-1' : ''}`}>
                                 <button 
                                     onClick={handleMemoryChange} 
-                                    className={`mb-[14px] font-bold w-[100px] h-[60px] rounded-full`}
+                                    className="mb-[14px] font-bold w-[100px] h-[60px] rounded-full"
                                 >
                                     <img src={images.good} alt="good" />
                                 </button>
@@ -157,7 +138,7 @@ export default function Diary() {
                             <div className={`flex flex-col font-bold text-center ${clickedButton === 'bad' ? 'ring-4 ring-inset ring-transparent rounded-full shadow-md p-1' : ''}`}>
                                 <button 
                                     onClick={handleMemoryChange} 
-                                    className={`mb-[14px] font-bold w-[100px] h-[60px] rounded-full`}
+                                    className="mb-[14px] font-bold w-[100px] h-[60px] rounded-full"
                                 >
                                     <img src={images.bad} alt="bad" />
                                 </button>
@@ -197,6 +178,7 @@ export default function Diary() {
                                     }}
                                 />
                             </div>
+                            
                         </div>
 
                         <div className='flex justify-center w-[100%] h-fit mt-[6%]'>
@@ -208,7 +190,7 @@ export default function Diary() {
                 </div>
 
                 <div className="w-[46%] h-fit flex justify-center items-center relative">
-                    <div className={`relative`}>
+                    <div className="relative">
                         <div className="absolute top-[15%] left-[37%] text-center font-bold text-[18px]">
                             오늘의 일기
                         </div>

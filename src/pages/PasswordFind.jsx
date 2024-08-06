@@ -101,11 +101,10 @@ export default function PasswordFind() {
                         비밀번호가 일치하지 않습니다.
                     </div>
                 )}
-                
                     <button
                         className="w-[50%] mx-[25%] rounded-3xl mb-4 p-3 h-12 text-sm bg-[#C4D4E9] font-bold"
                         // disabled={!emailValid || !userId}
-                        onClick={handleSubmit}>확인</button>
+                        onClick={handleSubmit}>확인</button> 
                 </div>
             </div>
         </>
